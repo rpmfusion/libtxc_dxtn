@@ -1,13 +1,13 @@
 Name:           libtxc_dxtn
-Version:        070518
+Version:        1.0.0
 Release:        1%{?dist}
+Epoch:          1
 Summary:        Free implementation of the s3tc texture compression algorithm
 
 Group:          System Environment/Libraries
 License:        BSD
-URL:            http://people.freedesktop.org/~cbrill/libtxc_dxtn
-Source0:        http://people.freedesktop.org/~cbrill/%{name}/%{name}%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+URL:            http://cgit.freedesktop.org/~mareko/libtxc_dxtn/
+Source0:        http://cgit.freedesktop.org/~mareko/%{name}/snapshot/%{name}-%{version}.tar.bz2
 
 BuildRequires:  mesa-libGL-devel       
 
@@ -16,21 +16,17 @@ Free implementation of the s3tc texture compression algorithm
 
 
 %prep
-%setup -q -n %{name}
-sed -i -e 's|/usr/lib|%{_libdir}|g' Makefile
+%setup -q
+sed -i -e 's|/usr/lib|%{_libdir}|g;s|install -m|install -pm|g' Makefile
 sed -i -e 's|pixerrorcolorbest\[3\]|pixerrorcolorbest[3]={0,0,0}|g' txc_compress_dxtn.c
+sed -i -e 's|GLshort alphatest\[2\]|GLshort alphatest[2]={0,0}|g' txc_compress_dxtn.c
 
 %build
-make %{?_smp_mflags} OPT_CFLAGS="%{optflags}"
+make %{?_smp_mflags} OPT_CFLAGS="%{optflags} -Werror"
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 
 %files
@@ -39,5 +35,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.so
 
 %changelog
+* Tue Mar 22 2011 Hicham HAOUARI <hicham.haouari@gmail.com> - 1:1.0.0-1
+- Update to 1.0.0 from Marek's branch
+
 * Tue Oct 26 2010 Hicham HAOUARI <hicham.haouari@gmail.com> - 070518-1
 - Initial package for Fedora.
