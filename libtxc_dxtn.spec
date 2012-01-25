@@ -1,6 +1,6 @@
 Name:           libtxc_dxtn
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Free implementation of the s3tc texture compression algorithm
 
@@ -35,6 +35,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/*.so
 
 %changelog
+* Wed Jan 25 2012 Nicolas Chauvet <kwizart@gmail.com> - 1:1.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Mar 22 2011 Hicham HAOUARI <hicham.haouari@gmail.com> - 1:1.0.0-1
 - Update to 1.0.0 from Marek's branch
 
