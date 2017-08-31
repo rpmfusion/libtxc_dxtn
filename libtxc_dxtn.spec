@@ -2,7 +2,7 @@
 
 Name:           libtxc_dxtn
 Version:        1.0.1
-Release:        2.git%{commit}%{?dist}
+Release:        3.git%{commit}%{?dist}
 Epoch:          1
 Summary:        Free implementation of the s3tc texture compression algorithm
 
@@ -41,6 +41,9 @@ rm -fr %{buildroot}/%{_includedir}
 %{_libdir}/*.so
 
 %changelog
+* Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1:1.0.1-3.gitef072983
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Sun Mar 19 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1:1.0.1-2.gitef072983
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
